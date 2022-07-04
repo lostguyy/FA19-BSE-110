@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Lab Exam</title>
+
+</head>
+
+<body>
+    <div class="container mt-5">
+
+        <div class="row mt-3" style="margin-left: 80%">
+            <a href="blogs/new" class="btn btn-success d-flex align-items-center"><i
+                    class="material-icons mr-2">add_circle</i>
+                Create New Project</a>
+        </div>
+
+        
+            <% if(blogs.length<1){%>
+
+            <p class="text-white">No posts yet, create a new one</p>
+
+            <%  } %>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <% blogs.forEach(blog=>{ %>
+
+                <div class="row p-2">
+                    <table class="table">
+                        <tbody>
+                          <tr>
+                            <th scope="row" id="p1"></th>
+                            <td><img src="/uploads/images/<%= blog.img %>" class="img-fluid" style="max-width: 100px; max-height: 100px;" alt="..."></td>
+                            <td><%= blog.title %></td>
+                            <td><%= blog.snippet %></td>
+                            <td><a href="blogs/edit/<%= blog.id %> " class="btn bg-info"
+                                style="background:blue;">
+                                <i class="material-icons" style="color:white">create</i>
+                            </a>
+                            <form action="/blogs/<%=blog.id%>?_method=DELETE" method="POST">
+                                <button class="btn bg-danger">
+                                    <i class="material-icons" style="color:white">delete</i>
+                                </button>
+                            </form></td>
+                          </tr>
+
+                        </tbody>
+                    </table>
+                                   
+                </div>
+
+            <% }) %>
+
+
+
+    </div>
+    <script src="/js/index.js"></script>
+    <script>
+        var i = 0;
+        document.getElementById("p1").innerHTML = i+1;
+    </script>
+
+</body>
+
+</html>
